@@ -1,0 +1,13 @@
+{
+  "name": "agent-fleet-command",
+  "owner": {
+    "name": "agent-fleet-command"
+  },
+  "plugins": [
+    {
+      "name": "agent-fleet-command",
+      "source": "./",
+      "description": "Multi-agent orchestration skills for phased parallel execution, self-managed review chains, and hierarchical consistency checks."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "agent-fleet-command",
+  "description": "Multi-agent orchestration skills for phased parallel execution, self-managed review chains, and hierarchical consistency checks",
+  "version": "1.0.0",
+  "skills": "./skills/"
+}

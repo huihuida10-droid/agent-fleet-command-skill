@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "agent-fleet-command",
+  "description": "Multi-agent orchestration skills for phased parallel execution, self-managed review chains, and hierarchical consistency checks",
+  "owner": {
+    "name": "agent-fleet-command"
+  },
+  "plugins": [
+    {
+      "name": "agent-fleet-command",
+      "description": "Multi-agent orchestration skills for phased parallel execution, self-managed review chains, and hierarchical consistency checks",
+      "author": {
+        "name": "phased-subagent-orchestration"
+      },
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}
