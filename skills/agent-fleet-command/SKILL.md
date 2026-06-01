@@ -46,11 +46,14 @@ digraph when_to_use {
 
 ### Phase 0: Initialization
 
-1. Analyze requirements with user
-2. Create `project-overview.md` (architecture outline)
-3. Create `task-{name}.md` files (detailed design per task)
-4. Analyze dependencies, determine execution phases
-5. Create TodoWrite to track all tasks
+1. **Ask user for document output folder** (e.g. `./project-docs/`)
+2. Create project folder: `{output-folder}/{project-name}/`
+3. Create sub-folders for document organization (see Document Output Structure)
+4. Analyze requirements with user
+5. Create `project-overview.md` in `00-项目概览/`
+6. Create `task-{name}.md` files in each `task-{name}/` folder
+7. Analyze dependencies, determine execution phases
+8. Create TodoWrite to track all tasks
 
 ### Phase N: Execution
 
@@ -144,6 +147,62 @@ After all phases:
 ## 技术提示
 [Implementation suggestions, not mandatory]
 ```
+
+## Document Output Structure
+
+All generated .md files are organized in a user-specified folder for both agent consumption and human review.
+
+### Setup
+
+At skill start, ask user:
+```
+请指定文档输出文件夹路径 (例如: ./project-docs/)
+```
+
+### Directory Layout
+
+```
+{output-folder}/
+└── {project-name}/
+    ├── 00-项目概览/
+    │   ├── project-overview.md          # 主智能体创建的总文档
+    │   └── execution-plan.md            # 执行计划（阶段划分）
+    ├── 01-task-{name}/
+    │   ├── task-{name}.md               # 子智能体的任务文档
+    │   └── review-result.md             # 审查子智能体的审查结果
+    ├── 02-task-{name}/
+    │   ├── task-{name}.md
+    │   └── review-result.md
+    ├── 03-审查记录/
+    │   └── consistency-check-{date}.md  # 主智能体的一致性检查记录
+    └── 04-执行日志/
+        └── execution-log.md             # 完整执行过程记录
+```
+
+### Naming Convention
+
+- `00-` prefix: 项目概览（最高层级）
+- `01-`, `02-`, ...: 按任务创建顺序编号
+- `03-`: 审查记录
+- `04-`: 执行日志
+
+### Who Writes What
+
+| 文件 | 创建者 | 内容 |
+|------|--------|------|
+| `project-overview.md` | 主智能体 | 架构、模块、规范 |
+| `execution-plan.md` | 主智能体 | 阶段划分、依赖图 |
+| `task-{name}.md` | 主智能体 | 任务详细需求 |
+| `review-result.md` | 审查子智能体 | 审查结果、问题清单 |
+| `consistency-check-{date}.md` | 主智能体 | 一致性检查记录 |
+| `execution-log.md` | 主智能体 | 完整执行过程 |
+
+### Human Review Benefits
+
+- 打开文件夹即可了解项目全貌
+- 按编号顺序阅读 = 按执行顺序回顾
+- 每个任务文件夹内：需求文档 + 审查结果一目了然
+- 审查记录和执行日志可追溯
 
 ## Review System
 

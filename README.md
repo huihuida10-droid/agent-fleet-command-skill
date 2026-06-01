@@ -134,9 +134,39 @@ npx skills add https://github.com/huihuida10-droid/agent-fleet-command-skill
 
 ## 🚀 快速开始
 
+### 0. 指定文档输出路径
+
+启用 Skill 后，主智能体会首先询问：
+
+```
+请指定文档输出文件夹路径 (例如: ./project-docs/)
+```
+
+所有生成的 .md 文件将按以下结构组织：
+
+```
+{输出文件夹}/
+└── {项目名称}/
+    ├── 00-项目概览/
+    │   ├── project-overview.md        # 架构总文档
+    │   └── execution-plan.md          # 执行计划
+    ├── 01-task-auth/
+    │   ├── task-auth.md               # 任务需求文档
+    │   └── review-result.md           # 审查结果
+    ├── 02-task-users/
+    │   ├── task-users.md
+    │   └── review-result.md
+    ├── 03-审查记录/
+    │   └── consistency-check-*.md     # 一致性检查记录
+    └── 04-执行日志/
+        └── execution-log.md           # 完整执行过程
+```
+
+**打开文件夹即可了解项目全貌，按编号顺序阅读 = 按执行顺序回顾。**
+
 ### 1. 主智能体初始化
 
-主智能体创建两份文档：
+主智能体创建文档（自动写入对应文件夹）：
 
 **project-overview.md**
 ```markdown

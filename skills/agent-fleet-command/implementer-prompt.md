@@ -22,6 +22,11 @@ Task tool (general-purpose):
 
     [List of already-completed tasks and their key outputs, for consistency]
 
+    ## Document Output Path
+
+    Your task folder: `{project-folder}/task-{name}/`
+    Review results will be written to: `{project-folder}/task-{name}/review-result.md`
+
     ## Your Job
 
     1. Read and understand both documents above

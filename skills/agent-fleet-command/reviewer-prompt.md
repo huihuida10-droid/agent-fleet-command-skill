@@ -21,6 +21,11 @@ Task tool (general-purpose):
     You ONLY read and report. If you find issues, you report them.
     The implementer will fix them.
 
+    ## Document Output
+
+    Write your review result to: `{project-folder}/task-{name}/review-result.md`
+    This file will be read by both the implementer (for fixes) and the user (for review).
+
     ## What Was Requested
 
     [FULL TEXT of task from task-{name}.md]

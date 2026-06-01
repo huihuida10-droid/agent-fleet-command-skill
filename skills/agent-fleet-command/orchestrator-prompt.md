@@ -22,25 +22,50 @@ Task tool (general-purpose):
 
     ## Phase 0: Initialization
 
+    ### Step 0: Set Up Document Output Folder
+
+    **FIRST ACTION:** Ask the user:
+    ```
+    请指定文档输出文件夹路径 (例如: ./project-docs/)
+    ```
+
+    Then create the project directory structure:
+    ```
+    {user-specified-path}/{project-name}/
+    ├── 00-项目概览/
+    ├── 01-task-{name}/     (one per task)
+    ├── 02-task-{name}/
+    ├── ...
+    ├── 03-审查记录/
+    └── 04-执行日志/
+    ```
+
+    ### Step 1: Create Documents
+
     1. Analyze the project requirements with the user
-    2. Create `project-overview.md` containing:
+    2. Create `00-项目概览/project-overview.md` containing:
        - Project goal (one sentence)
        - Architecture overview
        - Module breakdown with responsibilities and dependencies
        - Dependency graph (determines execution phases)
        - Unified standards (code style, naming, file organization, error handling)
-    3. Create `task-{name}.md` for each module containing:
+    3. Create `00-项目概览/execution-plan.md` containing:
+       - Phase breakdown
+       - Task assignment per phase
+       - Estimated complexity per task
+    4. Create `task-{name}/task-{name}.md` for each module containing:
        - Task name and所属模块
        - Task goal
        - Detailed requirements with验收标准
        - Constraints (which files can/cannot be modified)
        - Dependencies on other tasks
-    4. Analyze dependencies:
+    5. Analyze dependencies:
        - No dependencies → Phase 1
        - Dependencies only on Phase 1 → Phase 2
        - Continue until all tasks assigned
        - Circular dependency → escalate to user
-    5. Create TodoWrite with all tasks, grouped by phase
+    6. Create TodoWrite with all tasks, grouped by phase
+    7. Initialize `04-执行日志/execution-log.md` with project start timestamp
 
     ## Phase N: Dispatch
 
@@ -113,10 +138,20 @@ Task tool (general-purpose):
     For implementer:
     - description: "Implement Task N: [task name]"
     - prompt: [Use implementer-prompt.md template]
+    - Include in prompt: document output path `{project-folder}/task-{name}/`
 
     For consistency check (after phase):
     - description: "Check consistency for Phase N"
     - prompt: [Provide all completed task reports + main document]
+    - Write result to: `{project-folder}/03-审查记录/consistency-check-{date}.md`
+
+    ## Document Output During Execution
+
+    After each phase completes, update the execution log:
+    - Append to `{project-folder}/04-执行日志/execution-log.md`
+    - Record: phase number, tasks completed, issues found, consistency check result
+
+    After final check, write final summary to execution log.
 
     ## Red Flags
 
